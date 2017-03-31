@@ -3,7 +3,7 @@
 -- window normally-open, which will be part of a security system.
 --
 -- Note: these are just dumb sensors programmed to insert their
--- values into the local network MQTT queue (aka topic). The 
+-- values into the local network MQTT queue (aka topic). The
 -- Raspberry Pi (either the one running the broker or another one)
 -- has all the smarts about what to do with the data in the topic
 -- queue.
@@ -14,7 +14,7 @@
 --
 -- Phil Moyer
 -- Adafruit
--- 
+--
 -- May 2016
 --
 -- This code is open source, released under the BSD license. All
@@ -71,12 +71,12 @@ end
 -- Call this first! --
 -- makeConn() instantiates the MQTT control object, sets up callbacks,
 -- connects to the broker, and then uses the timer to send sensor data.
--- This is the "main" function in this library. This should be called 
+-- This is the "main" function in this library. This should be called
 -- from init.lua (which runs on the ESP8266 at boot), but only after
--- it's been vigorously debugged. 
+-- it's been vigorously debugged.
 --
 -- Note: once you call this from init.lua the only way to change the
--- program on your ESP8266 will be to reflash the NodeCMU firmware! 
+-- program on your ESP8266 will be to reflash the NodeCMU firmware!
 
 function makeConn()
 	-- Instantiate a global MQTT client object
@@ -92,7 +92,7 @@ function makeConn()
 	conn()
 
 	-- Use the watchdog to call our sensor publication routine
-	-- every dataInt seconds to send the sensor data to the 
+	-- every dataInt seconds to send the sensor data to the
 	-- appropriate topic in MQTT.
 	tmr.alarm(0, (dataInt * 1000), 1, pubEvent)
 end

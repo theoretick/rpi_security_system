@@ -11,13 +11,13 @@ _check_dependencies
 case "$1" in
   door_sensor)
     echo "Deploying lua build for door_sensor..."
-		for file in ./door_sensor/**
+    for file in ./door_sensor/**
     do
       _esp_wipe
 
       sleep 2 # Ensure wipe took effect
 
-		  cmd="luatool.py -p $ESP8266_PORT -b $BAUD_RATE -f ${file}"
+      cmd="luatool.py -p $ESP8266_PORT -b $BAUD_RATE -f ${file}"
       echo $cmd
       eval $cmd
     done

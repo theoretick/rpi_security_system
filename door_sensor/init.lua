@@ -1,10 +1,10 @@
 SSID    = "notmyactualnetwork"
 APPWD   = "notmyactualpassword"
 CMDFILE = "ping.lua"   -- File that is executed after connection
- 
+
 wifiTrys     = 15     -- Counter of trys to connect to wifi
 NUMWIFITRYS  = 200    -- Maximum number of WIFI Testings while waiting for connection
- 
+
 function launch()
   print("Connected to WIFI!")
   print("IP Address: " .. wifi.sta.getip())
@@ -12,8 +12,8 @@ function launch()
   dofile("security.lua")
   makeConn()
 end
- 
-function checkWIFI() 
+
+function checkWIFI()
   if ( wifiTrys > NUMWIFITRYS ) then
     print("Sorry. Not able to connect")
   else
@@ -25,12 +25,12 @@ function checkWIFI()
       tmr.alarm( 0 , 2500 , 0 , checkWIFI)
       print("Checking WIFI..." .. wifiTrys)
       wifiTrys = wifiTrys + 1
-    end 
-  end 
+    end
+  end
 end
- 
+
 print("-- Starting up! ")
- 
+
 -- Lets see if we are already connected by getting the IP
 ipAddr = wifi.sta.getip()
 if ( ( ipAddr == nil ) or  ( ipAddr == "0.0.0.0" ) ) then
