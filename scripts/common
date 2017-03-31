@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Source for common variables and functions
+
+BAUD_RATE=${BAUD_RATE:-115200}
+if [ -z "$ESP8266_PORT" ]
+then
+   ESP8266_PORT="/dev/tty.SLAB_USBtoUART"
+fi
+
+
+_err() {
+  echo 1>&2 "$@"
+}
+
+_check_dependencies() {
+  if [ ! -e $ESP8266_PORT ]
+  then
+    _err "Device not connected: ${ESP8266_PORT}"
+    exit 1
+  fi
+
+  if [ ! -x $(command -v luatool.py) ]
+  then
+    _err "luatool.py missing in \$PATH"
+    _err "Refer to https://github.com/4refr0nt/luatool for installation"
+    exit 1
+  fi
+
+  if [ ! -x $(command -v esptool.py) ]
+  then
+    _err "esptool.py missing in \$PATH"
+    _err "Refer to https://github.com/espressif/esptool for installation"
+    exit 1
+  fi
+}
+
+_esp_wipe() {
+  local cmd="luatool.py -p $ESP8266_PORT -b $BAUD_RATE --wipe"
+}

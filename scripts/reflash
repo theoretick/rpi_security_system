@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source "$(dirname "$0")/common"
+
+BASE_IMAGE=$(dirname "$0")/../build/base/nodemcu-master-12-modules-2017-03-04-01-15-09-float.bin
+
+esptool.py --port $ESP8266_PORT write_flash -fm dio 0x00000 $BASE_IMAGE
